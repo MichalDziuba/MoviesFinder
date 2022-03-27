@@ -1,12 +1,12 @@
 import { Outlet, useParams } from "react-router-dom";
-import { APIKEY } from "../../HomePage/HomePage";
+import {APIKEY} from "../../HomePage/HomePage";
 import axios from "axios";
 import { useState, useEffect } from "react";
-
+import styles from './MovieCast.module.css'
 export default function MovieCast() {
   const params = useParams();
   const movieId = params.movieId;
-  console.log(movieId);
+  
   const [movieCredits, setMovieCredits] = useState([]);
   useEffect(() => {
     async function FetchData() {
@@ -14,37 +14,40 @@ export default function MovieCast() {
         const response = await axios.get(
           `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${APIKEY}&language=en-US`
         );
-        console.log(response.data);
+      
         setMovieCredits(response.data.cast);
       } catch (error) {
         console.log(error);
       }
     }
     FetchData();
-  }, []);
+  }, [movieId]);
 
   return (
     <div>
-      {movieCredits.length===0 && <p>Sorry, we have no info here!</p>}
+      {movieCredits.length===0 && <p className={styles.movieCredits_noInfo}>Sorry, we have no info here!</p>}
       {movieCredits && (
-        <ul>
+        <ul className={styles.movieCredits_list}>
           {movieCredits.map((e) => {
             return (
               <li key={e.id}>
-                <div>
+                <div className={styles.movieCredits_wrapper}>
                   {!e.profile_path ? (
                     <img
-                      style={{ width: "100px", height: "130px" }}
+                      className={styles.movieCredits_image}
+                      alt="no info"
                       src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
                     />
                   ) : (
-                    <img
-                      style={{ width: "100px", height: "130px" }}
+                      <img
+                        alt ='actor'
+                      className={styles.movieCredits_image}
                       src={`https://image.tmdb.org/t/p/w500/${e.profile_path}`}
                     />
                   )}
 
                   {e.original_name}
+                  <p>Character: {e.character}</p>
                 </div>
               </li>
             );

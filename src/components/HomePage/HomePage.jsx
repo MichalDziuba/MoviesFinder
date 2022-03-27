@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import {Link} from "react-router-dom"
 import axios from "axios";
+import styles from './HomePage.module.css'
 const APIKEY = "7ac8d52cacafb4138b02b7a4e8b6c69d";
 export default function HomePage() {
  const [trendMovies, setTrendMovies] = useState([]);
@@ -19,26 +20,28 @@ export default function HomePage() {
    }
   }
    FetchData()
-   console.log(trendMovies);
  }, []);
   
 
     return (
-      <div>
-        <h2>Trending Today!</h2>
-        <ul>
+      <div className={styles.homepage_wrapper}>
+        <h2 className={styles.title}>Trending Today!</h2>
+        <ul className={styles.list}>
           {trendMovies.map((movie) => (
-         <li key={movie.id}>  <Link
-              to={`/movies/${movie.id}`}
-              key={movie.id}>
-              {movie.original_title}
-            </Link></li> 
-            
-           
+            <li key={movie.id} className={styles.list_item}>
+              {" "}
+              <Link
+                className={styles.list_item_link}
+                to={`/movies/${movie.id}`}
+                key={movie.id}
+              >
+                {movie.original_title}
+              </Link>
+            </li>
           ))}
         </ul>
       </div>
-  );
+    );
   
 }
 export {APIKEY}

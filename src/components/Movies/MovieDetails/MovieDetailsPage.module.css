@@ -1,0 +1,30 @@
+.movieDetails_wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+  margin-bottom: 20px;
+}
+.movieDetails_image{
+    width: 300px;
+    height: 400px;
+}
+.movieDetails_score{
+    font-size: 17px;
+    font-weight: 500;
+}
+.movieDetails_h3{
+    font-size: 20px;
+}
+.movieDetails_overview{
+    width: 700px;
+}
+.movieDetails_wrapper_links{
+   
+}
+.movieDetails_link{
+    color: black;
+    
+    margin-left: 20px;
+    margin-right: 20px;
+    
+}

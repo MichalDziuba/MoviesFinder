@@ -1,0 +1,49 @@
+.homepage_wrapper{
+    display: block;
+    justify-content: left;
+}
+.title{
+    font-size: 25px;
+    margin-left: 50px;
+}
+.list{
+    list-style-type: none;
+    text-decoration: none;
+    
+}
+.list_item{
+    font-size: 20px;
+    text-decoration: none;
+}
+.list_item_link{
+color:black;
+text-decoration: none;
+}
+.movies_Loading{
+    font-size: 60px;
+    font-weight: 700;
+}
+.movies_input{
+    height: 30px;
+    width: 150px;
+    border: 2;
+    border-radius: 4px;
+}
+.movies_button{
+    width: 100px;
+    height: 30px;
+    border: 2;
+    border-radius: 4px;
+    margin-left: 10px;
+    font-size: 20px;
+    background-color: rgba(250, 52, 52, 0.856);
+}
+.movies_form{
+    margin-left: 20px;
+}
+.movies_searchSomething{
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: 30px;
+    font-weight: 700;
+}

@@ -1,41 +1,63 @@
-import React from "react";
+import {React,lazy,Suspense} from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./components/HomePage/HomePage";
-import MoviesPage from "./components/Movies/Movies";
-import MoviesDetailsPage from "./components/Movies/MovieDetails/MoviesDetailsPage";
-import MovieCast from "./components/Movies/MovieCast/MovieCast";
-import MovieReviews from "./components/Movies/MovieReviews/MovieReviews";
+
+const HomePage = lazy(() =>
+  import(
+    "./components/HomePage/HomePage.jsx" /* webpackChunkName: "home-page" */
+  )
+);
+const MoviesPage = lazy(() =>
+  import("./components/Movies/Movies.jsx" /* webpackChunkName: "movie-page" */)
+);
+const MoviesDetailsPage = lazy(() =>
+  import(
+    "./components/Movies/MovieDetails/MoviesDetailsPage.jsx" /* webpackChunkName: "movie-details-page */
+  )
+);
+const MovieCast = lazy(() =>
+  import(
+    "./components/Movies/MovieCast/MovieCast.jsx" /* webpackChunkName: "movie-cast" */
+  )
+);
+const MovieReviews = lazy(() =>
+  import(
+    "./components/Movies/MovieReviews/MovieReviews.jsx" /* webpackChunkName: "movie-reviews" */
+  )
+);
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<HomePage />} />
+      <Suspense fallback='Please wait a second'>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<HomePage />} />
 
-          <Route path="movies" element={<MoviesPage />}>
-            <Route path=":movieId" element={<MoviesDetailsPage />}>
-              <Route path="cast" element={<MovieCast />} />
-              <Route path="reviews" element={<MovieReviews />} />
+            <Route path="movies" element={<MoviesPage />}>
+              <Route path=":movieId" element={<MoviesDetailsPage />}>
+                <Route path="cast" element={<MovieCast />} />
+                <Route path="reviews" element={<MovieReviews />} />
+              </Route>
             </Route>
-          </Route>
 
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>There's nothing here!</p>
-              </main>
-            }
-          />
-        </Route>
-      </Routes>
+            <Route
+              path="*"
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>There's nothing here!</p>
+                </main>
+              }
+            />
+          </Route>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
-  </React.StrictMode>,
+  // </React.StrictMode>
+  ,
   document.getElementById("root")
 );
 

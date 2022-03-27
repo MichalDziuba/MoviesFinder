@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate, useParams, Link } from "react-router-dom";
+import { Outlet, useParams, Link } from "react-router-dom";
 import { APIKEY } from "../HomePage/HomePage";
 import axios from "axios";
+import Button from "../Button/Button_goBack";
+import styles from '../HomePage/HomePage.module.css'
 export default function MoviesPage() {
-    let navigate = useNavigate();
+
   let params = useParams();
   const [keyword, setKeyword] = useState();
   const [movies, setMovies] = useState();
@@ -30,48 +32,43 @@ export default function MoviesPage() {
   },[keyword])
   
 if (!movies) {
-  return <p>...Loading</p>;
+  return <p className={styles.movies_Loading}>...Loading</p>;
 }
   return (
     <div>
-      <button
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        Go back
-      </button>
-      Movies!
+      <Button />
       {!params.movieId && (
         <div>
-          <form onSubmit={searching}>
+          <form onSubmit={searching}
+          className={styles.movies_form}>
             <input
+              className={styles.movies_input}
               name="name"
               type="text"
               autoComplete="off"
               autoFocus
               placeholder="Search movie"
             />
-            <button type="submit">Search</button>
+            <button className={styles.movies_button} type="submit">Search</button>
           </form>
           <div>
-            {!keyword  && (
-              <p>Search something!</p>
+            {!keyword && <p className={styles.movies_searchSomething}>Search something!</p>}
+            {keyword && (
+              <ul className={styles.list}>
+                {movies.map((movie) => (
+                  <li key={movie.id} className={styles.list_item}>
+                    {" "}
+                    <Link
+                      to={`/movies/${movie.id}`}
+                      key={movie.id}
+                      className={styles.list_item_link}
+                    >
+                      {movie.original_title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             )}
-            {keyword  && (
-              <ul>
-            {movies.map((movie) => (
-              <li key={movie.id}>
-                {" "}
-                <Link to={`/movies/${movie.id}`} key={movie.id}>
-                  {movie.original_title}
-                </Link>
-              </li>
-            ))}
-            </ul>
-
-            )}
-          
           </div>
         </div>
       )}

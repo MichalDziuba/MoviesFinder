@@ -1,0 +1,14 @@
+.movieReviews_list{
+    list-style-type: none;
+}
+.movieReviews_author{
+    font-size: 18px;
+}
+.movieReviews_content{
+    width: 800px;
+    text-align: justify;
+}
+.movieReviews_noInfo{
+    font-size: 20px;
+    font-weight: 600;
+}
