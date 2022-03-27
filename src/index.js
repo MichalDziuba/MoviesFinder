@@ -15,7 +15,7 @@ const MoviesPage = lazy(() =>
 );
 const MoviesDetailsPage = lazy(() =>
   import(
-    "./components/Movies/MovieDetails/MoviesDetailsPage.jsx" /* webpackChunkName: "movie-details-page */
+    "./components/Movies/MovieDetails/MoviesDetailsPage.jsx" /* webpackChunkName: "movie-details-page" */
   )
 );
 const MovieCast = lazy(() =>

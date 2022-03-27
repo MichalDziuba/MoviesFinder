@@ -1,8 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import axios from "axios";
-// import Trending from "./components/Trendings/Trendings";
 function App() {
  
   return (
