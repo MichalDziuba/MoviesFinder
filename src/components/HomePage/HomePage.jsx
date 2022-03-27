@@ -10,7 +10,7 @@ export default function HomePage() {
    
    try {
      const response = await axios.get(
-       `https://api.themoviedb.org/3/trending/movie/day?api_key=${APIKEY}`
+       `https://api.themoviedb.org/3/trending/movie/day?api_key=${APIKEY}&language=en-US`
      );
      setTrendMovies(response.data.results);
      
