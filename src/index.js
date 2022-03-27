@@ -31,32 +31,33 @@ const MovieReviews = lazy(() =>
 
 ReactDOM.render(
   // <React.StrictMode>
-  <BrowserRouter>
-    <Suspense fallback="Please wait a second">
-      <Routes>
-        <Route path="/goit-react-hw-05-movies" element={<App />}>
-          <Route index element={<HomePage />} />
+    <BrowserRouter>
+      <Suspense fallback='Please wait a second'>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<HomePage />} />
 
-          <Route path="movies" element={<MoviesPage />}>
-            <Route path=":movieId" element={<MoviesDetailsPage />}>
-              <Route path="cast" element={<MovieCast />} />
-              <Route path="reviews" element={<MovieReviews />} />
+            <Route path="movies" element={<MoviesPage />}>
+              <Route path=":movieId" element={<MoviesDetailsPage />}>
+                <Route path="cast" element={<MovieCast />} />
+                <Route path="reviews" element={<MovieReviews />} />
+              </Route>
             </Route>
-          </Route>
 
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>There's nothing here!</p>
-              </main>
-            }
-          />
-        </Route>
-      </Routes>
-    </Suspense>
-  </BrowserRouter>,
+            <Route
+              path="*"
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>There's nothing here!</p>
+                </main>
+              }
+            />
+          </Route>
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
   // </React.StrictMode>
+  ,
   document.getElementById("root")
 );
 
