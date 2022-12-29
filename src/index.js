@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 
 const HomePage = lazy(() =>
   import(
@@ -31,7 +31,7 @@ const MovieReviews = lazy(() =>
 
 ReactDOM.render(
   // <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Suspense fallback='Please wait a second'>
         <Routes>
           <Route path="/" element={<App />}>
@@ -55,7 +55,7 @@ ReactDOM.render(
           </Route>
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </HashRouter>
   // </React.StrictMode>
   ,
   document.getElementById("root")
